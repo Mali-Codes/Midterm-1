@@ -3,26 +3,31 @@ using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
 
-// Doubly linked list class definition
+// Heres the doubly linked list class definition
 class DoublyLinkedList {
-private:
-    struct Node {
-        int data;
-        Node* prev;
-        Node* next;
-        Node(int val, Node* p = nullptr, Node* n = nullptr) {
-            data = val; 
-            prev = p;
-            next = n;
+private:    // These are private members not to be accessed directly outside the class
+    struct Node { //this is makinga a node structure thats going to hold the data and the pointers to the next and previous nodes
+        int data; // this is an integer to hold the data
+        Node* prev; //this is a pointer to the pprevious node 
+        Node* next; //this is a pointer to not the next node 
+        Node(int val, Node* p = nullptr, Node* n = nullptr) { //this is a constructor for the node structure so its like the blueprint
+            data = val; //this is setting the data to the value passed in (int data was declared above))
+            prev = p; //Similarly, this is setting the prev pointer to the p pointer passed in (Node* prev was declared above)
+            next = n; //Finally this is setting the next pointer to be the n pointer passed in the constructor like the last two
         }
     };
 
-    Node* head;
-    Node* tail;
+    Node* head;  //this is a pointer to the head (front) of the list
+    Node* tail; //this is a pointer to the tail (back) of the list
+    //with all these done we can now make the public functions to manipulate the list and do linked list magic
 
+    //public members can be accessed outside the class we will be doing things to the list with this part (setters and getters go here)
 public:
-    DoublyLinkedList() { head = nullptr; tail = nullptr; }
+    DoublyLinkedList() { head = nullptr; tail = nullptr; } //calling the constructor to set head and tail to null pointersthink of it like as an empty list
 
+    // here it starts getting fun, we now get to manipulat the list with these functions
+
+    
     void insert_after(int value, int position) {
         if (position < 0) {
             cout << "Position must be >= 0." << endl;
