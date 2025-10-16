@@ -9,8 +9,8 @@ private:    // These are private members not to be accessed directly outside the
     struct Node { //this is makinga a node structure thats going to hold the data and the pointers to the next and previous nodes
         int data; // this is an integer to hold the data
         Node* prev; //this is a pointer to the pprevious node 
-        Node* next; //this is a pointer to not the next node 
-        Node(int val, Node* p = nullptr, Node* n = nullptr) { //this is a constructor for the node structure so its like the blueprint
+        Node* next; //this is a pointer to the next node 
+        Node(int val, Node* p = nullptr, Node* n = nullptr) { //this is a constructor for the node structure so its like the blueprint for new nodes
             data = val; //this is setting the data to the value passed in (int data was declared above))
             prev = p; //Similarly, this is setting the prev pointer to the p pointer passed in (Node* prev was declared above)
             next = n; //Finally this is setting the next pointer to be the n pointer passed in the constructor like the last two
@@ -23,28 +23,28 @@ private:    // These are private members not to be accessed directly outside the
 
     //public members can be accessed outside the class we will be doing things to the list with this part (setters and getters go here)
 public:
-    DoublyLinkedList() { head = nullptr; tail = nullptr; } //calling the constructor to set head and tail to null pointersthink of it like as an empty list
+    DoublyLinkedList() { head = nullptr; tail = nullptr; } //this is the constructor to set head and tail to null pointers, it's making/initializing an empty list
 
     // here it starts getting fun, we now get to manipulat the list with these functions
 
-    
-    void insert_after(int value, int position) {
-        if (position < 0) {
+    // this block is the function to insert a new node after giving a position
+    void insert_after(int value, int position) {        //it takes in a value to insert after the given position
+        if (position < 0) {     // if the position is less than 0 we cant insert it so we return
             cout << "Position must be >= 0." << endl;
             return;
         }
 
-        Node* newNode = new Node(value);
-        if (!head) {
+        Node* newNode = new Node(value); //this is making a new node with the value passed in
+        if (!head) {  //if there isnt the head (first node) then we set head and tail to the new node and return
             head = tail = newNode;
             return;
         }
 
-        Node* temp = head;
-        for (int i = 0; i < position && temp; ++i)
-            temp = temp->next;
+        Node* temp = head;  // start at the head of the list to find the position
+        for (int i = 0; i < position && temp; ++i) //walking through the list to find the position
+            temp = temp->next;  //move to the next node
 
-        if (!temp) {
+        if (!temp) { // catches if the positon is greater than the size of the list
             cout << "Position exceeds list size. Node not inserted.\n";
             delete newNode;
             return;
