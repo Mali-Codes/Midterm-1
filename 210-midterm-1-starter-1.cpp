@@ -121,55 +121,55 @@ public:
         delete temp;
     }
 
-    void push_back(int v) { //
-        Node* newNode = new Node(v);
+    void push_back(int v) { // this function adds a new node to the back of the list
+        Node* newNode = new Node(v); // make a new node with the value passed in during the "call"
         if (!tail)
-            head = tail = newNode;
-        else {
+            head = tail = newNode; // if the list is empty set head and tail to the new node
+        else { // add the new node to the end and connect the tail to the new node and set the new node's prev to the old tail
             tail->next = newNode;
             newNode->prev = tail;
-            tail = newNode;
+            tail = newNode; //finally make the new node the new tail
         }
     }
     
-    void push_front(int v) {
-        Node* newNode = new Node(v);
-        if (!head)
+    void push_front(int v) { // this function adds a new node to the front of the list
+        Node* newNode = new Node(v); //makes a new node with the value passed in during the "call" like in above function
+        if (!head) // if the list is empty set head and tail to the new node
             head = tail = newNode;
-        else {
-            newNode->next = head;
+        else { // add the new node to the front and connect the head to the new node and set the new node's next to the old head
+            newNode->next = head; //like the above function but reversed
             head->prev = newNode;
             head = newNode;
         }
     }
     
-    void pop_front() {
+    void pop_front() { // this function removes the node at the front of the list
 
         if (!head) {
-            cout << "List is empty." << endl;
+            cout << "List is empty." << endl; // if the list is empty we return
             return;
         }
 
-        Node * temp = head;
+        Node * temp = head; // save a pointer to the current head to delete later
 
-        if (head->next) {
-            head = head->next;
+        if (head->next) { // this block is if there is more than one node in the list move
+            head = head->next; //the head to the next node and disconnect the old head
             head->prev = nullptr;
         }
         else
-            head = tail = nullptr;
-        delete temp;
+            head = tail = nullptr; // if there was only one node set head and tail to null pointers 
+        delete temp; //free the memory of the old head
     }
 
-    void pop_back() {
+    void pop_back() { // this function removes the node at the back of the list
         if (!tail) {
-            cout << "List is empty." << endl;
+            cout << "List is empty." << endl; // if the list is empty we return
             return;
         }
-        Node * temp = tail;
+        Node * temp = tail; // save a pointer to the current tail to delete later
 
-        if (tail->prev) {
-            tail = tail->prev;
+        if (tail->prev) { // if there is more than one node in the list move 
+            tail = tail->prev; //the tail to the previous node and disconnect the old tail
             tail->next = nullptr;
         }
         else
@@ -179,15 +179,15 @@ public:
 
     ~DoublyLinkedList() {
         while (head) {
-            Node* temp = head;
+            Node* temp = head;  // this block is the destructor to free all memory when the list goes out of scope
             head = head->next;
             delete temp;
         }
     }
-    void print() {
+    void print() { //this whole block is just to print the list from head to tail going front to back by nodes
         Node* current = head;
         if (!current) {
-            cout << "List is empty." << endl;
+            cout << "List is empty." << endl; 
             return;
         }
         while (current) {
@@ -197,7 +197,7 @@ public:
         cout << endl;
     }
 
-    void print_reverse() {
+    void print_reverse() { //this whole block is just to print the list from tail to head going back to front by nodes
         Node* current = tail;
         if (!current) { 
             cout << "List is empty." << endl;
