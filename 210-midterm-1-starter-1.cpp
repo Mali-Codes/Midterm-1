@@ -214,6 +214,9 @@ public:
         int index = 0; //start at 0
         // skip every other node
         // using theh print function as inspiration
+
+        //modulo for even checking
+        // use conditional if for odd
         while (current) {
             cout << current->data << " ";
             current = current->prev;
