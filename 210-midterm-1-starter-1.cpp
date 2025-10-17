@@ -218,11 +218,12 @@ public:
         // modulo for even checking
         // use conditional if for odd
         while (current) {
-            cout << current->data << " ";
-            current = current->prev;
 
-            if (current %1 == 1) {
+            if (index %1 == 0) {
+                
                 cout << current->data << " ";
+                current = current->next; // move to the next node
+                index ++; // increment index
             }
         }
         cout << endl;
