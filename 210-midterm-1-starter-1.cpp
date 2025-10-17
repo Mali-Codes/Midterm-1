@@ -212,9 +212,15 @@ public:
     void every_other_method() {
         Node* current = head;
         int index = 0; //start at 0
-        //skip every other node
+        // skip every other node
+        // using theh print function as inspiration
+        while (current) {
+            cout << current->data << " ";
+            current = current->prev;
+        }
+        cout << endl;
 
-    }
+    };
 };
 
 int main() {
@@ -231,7 +237,8 @@ int main() {
     cout << "++++ Original List ++++" << endl;
     list.print();
 
-    cout << "++++ "
+    cout << "++++ Every other element ++++:" << endl;
+    list.every_other_method();
     
     return 0;
 }
