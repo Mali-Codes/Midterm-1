@@ -215,11 +215,15 @@ public:
         // skip every other node
         // using theh print function as inspiration
 
-        //modulo for even checking
+        // modulo for even checking
         // use conditional if for odd
         while (current) {
             cout << current->data << " ";
             current = current->prev;
+
+            if (current %1 == 1) {
+                cout << current->data << " ";
+            }
         }
         cout << endl;
 
