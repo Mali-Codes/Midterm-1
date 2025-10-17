@@ -46,20 +46,21 @@ public:
 
         if (!temp) { // catches if the positon is greater than the size of the list
             cout << "Position exceeds list size. Node not inserted.\n";
-            delete newNode;
+            delete newNode; // clean up memory
             return;
         }
 
-        newNode->next = temp->next;
-        newNode->prev = temp;
-        if (temp->next)
-            temp->next->prev = newNode;
-        else
-            tail = newNode;
-        temp->next = newNode;
+        // Now we insert the new node after the found position
+        newNode->next = temp->next;  // new node's next points is to whatever was after temp
+        newNode->prev = temp; // new node's prev points back to temp
+        if (temp->next)   //if there's a node after temp (we're not at the end)  
+            temp->next->prev = newNode;  //update that node's prev to point back to the new node
+        else // if we are at the end of the list
+            tail = newNode; // update tail to be the new node
+        temp->next = newNode; // finally connect temp to the new node
     }
 
-    void delete_val(int value) {
+    void delete_val(int value) {  //this function deletes the first node with the given value
         if (!head) return;
 
         Node* temp = head;
@@ -207,11 +208,30 @@ public:
         }
         cout << endl;
     }
+
+    void every_other_method() {
+        Node* current = head;
+        int index = 0; //start at 0
+        //skip every other node
+
+    }
 };
 
 int main() {
-    cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
+    cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS << "\n";  // dummy statement to avoid compiler warning
 
+    DoublyLinkedList list;
+    
+    list.push_back(10);
+    list.push_back(20);
+    list.push_back(30);
+    list.push_back(40);
+    list.push_back(50);
+
+    cout << "++++ Original List ++++" << endl;
+    list.print();
+
+    cout << "++++ "
     
     return 0;
 }
