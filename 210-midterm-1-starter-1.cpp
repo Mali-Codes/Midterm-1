@@ -211,7 +211,7 @@ public:
 
     void every_other_method() {
         Node* current = head;
-        int index = 0; //start at 0
+        int index = 1; //start at 1 to print the first element
         // skip every other node
         // using theh print function as inspiration
 
@@ -219,16 +219,17 @@ public:
         // use conditional if for odd
         while (current) {
 
-            if (index %1 == 0) {
+            if (index % 2 == 1) {
                 
                 cout << current->data << " ";
-                current = current->next; // move to the next node
-                index ++; // increment index
+                
             }
+            current = current->next; // move to the next node
+            index ++; // increment index
         }
         cout << endl;
 
-    };
+    }
 };
 
 int main() {
@@ -246,7 +247,9 @@ int main() {
     list.print();
 
     cout << "++++ Every other element ++++:" << endl;
+
     list.every_other_method();
+
     
     return 0;
 }
