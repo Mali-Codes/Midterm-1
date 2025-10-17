@@ -61,66 +61,67 @@ public:
     }
 
     void delete_val(int value) {  //this function deletes the first node with the given value
-        if (!head) return;
+        if (!head) return; // if the list is empty we return
 
-        Node* temp = head;
+        Node* temp = head; // start at the head to find the value
         
-        while (temp && temp->data != value)
+        while (temp && temp->data != value) // walk through the list until we find the value or reach the end
             temp = temp->next;
 
-        if (!temp) return; 
+        if (!temp) return;     // if we reached the end without finding the value, we return
 
-        if (temp->prev)
-            temp->prev->next = temp->next;
-        else
-            head = temp->next; 
+        if (temp->prev)         // if there's a node before temp   
+            temp->prev->next = temp->next; // update that node's next to skip temp
+        else 
+            head = temp->next;  // move the head ot the next node
 
         if (temp->next)
-            temp->next->prev = temp->prev;
-        else
-            tail = temp->prev; 
+            temp->next->prev = temp->prev;  // if theres a node after temp update its prev to skip temp
+        else // if temp is the tail
+            tail = temp->prev;  //move tail back to the previous node
 
         delete temp;
     }
 
+    // this function deletes a node at a specific position
     void delete_pos(int pos) {
         if (!head) {
-            cout << "List is empty." << endl;
+            cout << "List is empty." << endl;  // if the list is empty we return
             return;
         }
     
-        if (pos == 1) {
+        if (pos == 1) { // if the position is 1 we pop the front with the pop front function       
             pop_front();
             return;
         }
     
-        Node* temp = head;
+        Node* temp = head;  // start at the head to find the position
     
-        for (int i = 1; i < pos; i++){
-            if (!temp) {
-                cout << "Position doesn't exist." << endl;
+        for (int i = 1; i < pos; i++){ // walk through the list to the position  
+            if (!temp) {  // [going blockl by block for time] this one is if we reach the end before the position we return
+                cout << "Position doesn't exist." << endl;   
                 return;
             }
-            else
+            else // move to the next node
                 temp = temp->next;
         }
-        if (!temp) {
+        if (!temp) { // if we reach the end without finding the position we return again
             cout << "Position doesn't exist." << endl;
             return;
         }
     
-        if (!temp->next) {
+        if (!temp->next) { // if we're at the end we pop the back with the pop back function
             pop_back();
             return;
         }
-    
-        Node* tempPrev = temp->prev;
-        tempPrev->next = temp->next;
-        temp->next->prev = tempPrev;
+    // now were deleting a node that isnt the head or tail
+        Node* tempPrev = temp->prev;  // save a pointer to the node before temp
+        tempPrev->next = temp->next; // connect previous nothe to the next node
+        temp->next->prev = tempPrev; // connect the next node back to the previous node
         delete temp;
     }
 
-    void push_back(int v) {
+    void push_back(int v) { //
         Node* newNode = new Node(v);
         if (!tail)
             head = tail = newNode;
